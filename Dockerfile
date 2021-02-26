@@ -6,6 +6,12 @@ LABEL description="This Dockerfile sets up TextBoxes++\
 and CRNN with all their respective dependencies.\
 Make sure to run with nvidia-docker"
 
+RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak && \
+ echo "deb https://mirrors.bfsu.edu.cn/ubuntu/ trusty main restricted universe multiverse" >> /etc/apt/sources.list && \
+ echo "deb https://mirrors.bfsu.edu.cn/ubuntu/ trusty-updates main restricted universe multiverse" >>/etc/apt/sources.list && \
+ echo "deb https://mirrors.bfsu.edu.cn/ubuntu/ trusty-backports main restricted universe multiverse" >>/etc/apt/sources.list && \
+ echo "deb https://mirrors.bfsu.edu.cn/ubuntu/ trusty-security main restricted universe multiverse" >>/etc/apt/sources.list
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
         autoconf \
         autoconf-archive \
